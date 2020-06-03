@@ -8,10 +8,13 @@ public class App {
 
     public static void main(String[] args) {
         staticFiles.location("/public");
+        
+        UserApi userApi = new UserApi();
 
         path("/api", () -> {
             path("/user", () -> {
-                get("/list", UserApi.getList());
+                post("/add", userApi.add());
+                get("/list", userApi.getList());
             });
         });
 

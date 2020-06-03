@@ -12,13 +12,28 @@
 <body>
     <div id="app"></div>
 
+    <button>Send data</button>
+
     <script>
         $(document).ready(function () {
-            $.get("/status", function (data, status) {
+            $.get("/api/user/list", function (data, status) {
                 var $app = $('#app');
-                $app.append('<h1>' + data.message + '</h1>');
+                $app.append('<h1>' + data[0].login + '</h1>');
             });
         });
+
+        $("button").click(function () {
+            $.post("/api/user/add",
+                {
+                    login: "japa",
+                    firstName: "Janusz",
+                    lastName: "Paciaciak",
+                    password: "12345"
+                },
+                function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+        }); 
     </script>
 </body>
 
