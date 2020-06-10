@@ -11,13 +11,23 @@ $(document).ready(function () {
         $app.append('</ul>')
     });
     
-    $("button").click(function () {
+    $("#saveBtn").click(function () {
         $.post("/api/user/add",
             {
                 login: $('#login').val(),
                 firstName: $('#firstName').val(),
                 lastName: $('#lastName').val(),
                 password: $('#password').val()
+            },
+            function (data, status) {
+    
+            });
+    }); 
+
+    $("#removeBtn").click(function () {
+        $.post("/api/user/delete",
+            {
+                login: $('#loginToRemove').val(),
             },
             function (data, status) {
     

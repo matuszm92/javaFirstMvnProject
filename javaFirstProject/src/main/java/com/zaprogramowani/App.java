@@ -15,6 +15,7 @@ public class App {
             path("/user", () -> {
                 post("/add", userApi.add());
                 get("/list", userApi.getList());
+                post("/delete", userApi.delete());
             });
         });
 

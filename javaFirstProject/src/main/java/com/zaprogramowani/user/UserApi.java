@@ -2,8 +2,6 @@ package com.zaprogramowani.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.google.gson.Gson;
 
@@ -41,6 +39,25 @@ public class UserApi {
                 user.setLastName(paramValues.get(2));
                 user.setPassword(paramValues.get(3));
                 users.add(user);
+            }
+            res.type("application/json");
+            return "";
+        };
+	}
+
+	public Route delete() {
+		return (req, res) -> {
+            String body = req.body();
+            if(body != null) {
+                List<String> paramValues = new ArrayList<>();
+                String[] params = body.split("&");
+                for(String param : params) {
+                    String[] paramPair = param.split("=");
+                    paramValues.add(paramPair[1]);
+                }
+                String loginToDelete = paramValues.get(0);
+                User userToDelete = users.stream().filter(user -> loginToDelete.equals(user.getLogin())).findAny().orElse(null);
+                users.remove(userToDelete);                
             }
             res.type("application/json");
             return "";
