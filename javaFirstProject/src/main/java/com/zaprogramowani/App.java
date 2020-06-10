@@ -16,6 +16,7 @@ public class App {
                 post("/add", userApi.add());
                 get("/list", userApi.getList());
                 post("/delete", userApi.delete());
+                post("/edit", userApi.edit());
             });
         });
 
